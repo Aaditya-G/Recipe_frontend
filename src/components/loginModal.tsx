@@ -28,7 +28,7 @@ const Modal = styled.div`
 
 
 const LoginModal = () => {
-    const [modalShown , setModalShown] = React.useState("login");
+    const [modalShown , setModalShown] = React.useState("reg");
     const [isOpen, setOpen] = React.useState(false);
     
     const handleLoginClick = () => {
@@ -41,8 +41,7 @@ const LoginModal = () => {
 
     return (
       <Container>
-        <br />
-        <button onClick={() => setOpen(!isOpen)}>Login /Regsister</button>
+        <a href='#' onClick={() => setOpen(!isOpen)}> SIGN UP</a>
         {isOpen && (
           <>
             <ModalContainer>

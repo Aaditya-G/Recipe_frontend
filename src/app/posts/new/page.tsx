@@ -21,7 +21,6 @@ const page = () => {
         dishPhoto,
       };
 
-      console.log(token);
 
       const response = await axios.post(
         "http://localhost:8000/post/create",
