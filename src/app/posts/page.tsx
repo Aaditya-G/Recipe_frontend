@@ -4,29 +4,43 @@ import Image from "next/image";
     const res = await fetch (
         'http://localhost:8000/post/getAllPost'
     );
-     const data = await res.json()
+     const data = await res.json();
 
-
-     const imgpath = ''
+     let imgurl = ''
+     data && [data].map((item , i) => (
+        imgurl = "http://localhost:8000" + data.message[i].dishPhoto
+     ))
 
 
   console.log(data)
+  console.log(imgurl)
 
    
 
     return (
-        <div> this is going to be the page where user can see all the posts
+        <>
+
         <div>
-           {data && 
+        {data && 
               [data].map((item , i) => (
                 <div key={i}>
                     {data.message[i].dishName} <br />
                     {data.message[i].userId}   // will use this format for iterating over data
                     {data.message[i].dishPhoto}
+                    <Image src = {imgurl}
+                     alt= ""
+                      width={800} 
+                      height={400} />
                 </div>
+             
+
               ))}
         </div>
-        </div>
+         
+    
+        
+        </>
+       
     )
 }
 
