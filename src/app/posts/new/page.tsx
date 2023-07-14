@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import axios from "axios";
-import { headers } from "next/dist/client/components/headers";
 
 const page = () => {
   const [dishName, setDishName] = React.useState("");

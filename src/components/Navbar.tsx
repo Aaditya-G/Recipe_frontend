@@ -2,6 +2,7 @@
 import React from 'react'
 import {useState,useEffect} from 'react'
 import Image from 'next/image';
+import logo from '../../public/logo.svg'
 import Link from 'next/link';
 // Token 8aa2bb9efacee868d83ac03960e12f164d300e51
 import { usePathname } from 'next/navigation'
@@ -60,7 +61,11 @@ const Navbar = () => {
 	
     <nav className="bg-gradient-to-r from-pink-200 to-white w-100 px-8 md:px-auto">
 	<div className="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
-	<img src="../public/navlogo.png" alt="Logo" />
+	<Image
+	  src={logo}
+	  alt="logo"
+	  height={60}
+	  />
 		<div className="text-pink-600 md:order-1">
 	
 		</div>

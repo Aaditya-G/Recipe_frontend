@@ -15,7 +15,6 @@ const page = () => {
 
     return (
       <div>
-   <Navbar/>
         This is the home page view
    
           
