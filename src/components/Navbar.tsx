@@ -66,9 +66,6 @@ const Navbar = () => {
 	  alt="logo"
 	  height={60}
 	  />
-		<div className="text-pink-600 md:order-1">
-	
-		</div>
 		<div className="text-gray-500 order-3 w-full md:w-auto md:order-2">
 			<ul className="flex font-semibold justify-between">
                 
@@ -80,7 +77,7 @@ const Navbar = () => {
 			</ul>
 		</div>
 		<div className="order-2 md:order-3 ">
-			<button className="px-4 py-2 bg-blue-950 hover:bg-blue-800 text-white rounded-xl flex items-center gap-2">
+			<div className="px-4 py-2 bg-blue-950 hover:bg-blue-800 text-white rounded-xl flex items-center gap-2">
                
                 {
 					loginStatus? (<Link href='#' onClick={()=>{
@@ -97,7 +94,7 @@ const Navbar = () => {
 					</Link>):
 						<LoginModal/>
 				}
-            </button>
+            </div>
 		</div>
 	</div>
 </nav>
