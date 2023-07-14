@@ -1,30 +1,29 @@
 'use client'
 import LoginForm from '@/components/loginForm';
-import axios from 'axios';
+import SignupForm from '@/components/signupForm';
+import styled, { css } from "styled-components";
 import * as React from 'react';
+import Modal from '@/components/loginModal';
+
+
 
 
 const page = () => {
+   
 
-    const [isShown, setIsShown] = React.useState(false);
-
-    const handleClick = () => {
-      setIsShown(current => !current);
-    }
 
     return (
-        <div>
-            Home page view
-            <button onClick={handleClick} className='ring-2 mx-4' >Like</button>
-            {isShown && (
-        <div>
-          <h2>    <LoginForm /> </h2>
-        </div>
-      )}
-        
-        </div>
+      <div>
+        This is the home page view
    
-    )
+          
+        
+       
+          <Modal/>
+        
+      </div>
+   
+    );
 }
 
 export default page
