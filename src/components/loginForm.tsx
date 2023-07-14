@@ -3,8 +3,11 @@ import React from "react";
 import axios from 'axios';
 
 
+
 const LoginForm = () => {
-    
+
+
+      // const router = useRouter ();
 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -20,23 +23,17 @@ const LoginForm = () => {
             const token = response.data.token;
             
             sessionStorage.setItem('auth-token' , token)
-            window.location.reload();
+
+          
+            // router.push('/home')
+            window.location.href = "http://localhost:3000/home"
         } catch (error) {
             console.error(error);
             throw new Error('Login failed');
         }  
        
         }
-        // fetch("http://localhost:8000/auth/login", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         username,
-        //         password
-        //     }),
-        //     headers: {
-        //         "content-type": "application/json",
-        //       },
-        //     }).catch((e) => console.log(e));
+
 
 
   return (

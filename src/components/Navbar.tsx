@@ -6,6 +6,7 @@ import Link from 'next/link';
 // Token 8aa2bb9efacee868d83ac03960e12f164d300e51
 import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
+import LoginModal from './loginModal';
 const Navbar = () => {
 	const [loginStatus,setLoginStatus]=useState(false)
 	const router = useRouter()
@@ -14,7 +15,7 @@ const Navbar = () => {
 	
 	const getLoginStatus=async()=>{
 		try{
-		let authtoken =localStorage.getItem('auth-token')
+		let authtoken =sessionStorage.getItem('auth-token')
 		let response;
 		if(authtoken){
 			 response = await fetch('http://localhost:8000/auth/test_token', {
@@ -67,7 +68,7 @@ const Navbar = () => {
 			<ul className="flex font-semibold justify-between">
                 
 				<li className="md:px-4 md:py-2 text-black "><a href="/home">Home</a></li>
-				<li className="md:px-4 md:py-2 hover:text-black"><a href="/profile">Profile</a></li>
+				<li className="md:px-4 md:py-2 hover:text-black"><a href="/user">Profile</a></li>
 				<li className="md:px-4 md:py-2 hover:text-black"><a href="/posts">MyCookBook</a></li>
 				<li className="md:px-4 md:py-2 hover:text-black"><a href="/about">About Us</a></li>
 				
@@ -79,14 +80,17 @@ const Navbar = () => {
                 {
 					loginStatus? (<Link href='#' onClick={()=>{
 						try{
-							localStorage.removeItem('auth-token')
+							sessionStorage.removeItem('auth-token')
 							getLoginStatus()
 							router.push('/')
 						}
 						catch(e){
 							console.log(e)
 						}
-					}}>LogOut</Link>):(<Link href='/login'>LogIn</Link>)
+					}}>LogOut
+					
+					</Link>):
+						<LoginModal/>
 				}
             </button>
 		</div>

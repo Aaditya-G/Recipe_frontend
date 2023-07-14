@@ -1,6 +1,5 @@
 import React from "react";
 import axios from 'axios';
-import Router from "next/router";
 
 const SignupForm = () => {
     
@@ -23,16 +22,6 @@ const SignupForm = () => {
             throw new Error('Login failed');
         }  
         }
-        // fetch("http://localhost:8000/auth/login", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         username,
-        //         password
-        //     }),
-        //     headers: {
-        //         "content-type": "application/json",
-        //       },
-        //     }).catch((e) => console.log(e));
 
 
   return (
