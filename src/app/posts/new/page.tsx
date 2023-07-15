@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import axios from "axios";
 import getLoginStatus from "@/utilites/getLoginStatus";
 import { useRouter } from "next/navigation";
+import { Cloudinary } from 'cloudinary-core';
+import { env } from "process";
 
 const page = () => {
 
@@ -14,7 +16,7 @@ const page = () => {
       window.location.href= "http://localhost:3000/home";    }
   }
 
-  checkLogin() 
+  checkLogin()  //checks if user is logged in
  
 
 
@@ -22,11 +24,38 @@ const page = () => {
   const [dishBio, setDishBio] = React.useState("");
   const [dishCuisine, setDishCuisine] = React.useState("");
   const [dishTime, setDishTime] = React.useState("");
-  const [dishPhoto, setDishPhoto] = React.useState("");
+  const [dishPic, setDishPic] = React.useState<File|null>();  //this is used to upload the pic to cloudinary
 
   const upload = async () => {
     try {
       const token = sessionStorage.getItem("auth-token");
+
+      const formData = new FormData();
+      formData.append('file', dishPic);
+      formData.append('upload_preset', 'nextjs_upload_preset')
+
+      const response_cloud = await axios.post(
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/upload`,
+        formData,
+        
+        {
+          headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        }
+      );
+  
+      // Handle the response from Cloudinary
+      console.log(response_cloud.data);
+
+
+ const dishPhoto = response_cloud.data.secure_url
+
+
+  
+  
+
+
+
+
 
       const data = {
         dishName,
@@ -35,6 +64,8 @@ const page = () => {
         dishTime,
         dishPhoto,
       };
+
+      console.log(data)
 
 
       const response = await axios.post(
@@ -48,7 +79,7 @@ const page = () => {
         }
       );
     } catch (error) {
-      console.error(error);
+      console.log(error);
       throw new Error("Post failed");
     }
   };
@@ -102,10 +133,10 @@ const page = () => {
          <input 
         type="file" 
         name="dish Photo" 
-        value={dishPhoto} 
+        // value={dishPhoto} 
         placeholder="Upload image of your dish"
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-        onChange={(e) => setDishPhoto(e.target.value)}
+        onChange={(e:ChangeEvent<HTMLInputElement>)=>{setDishPic(e.target.files[0])}}
         required
         />
         <button
