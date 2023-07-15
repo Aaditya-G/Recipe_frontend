@@ -26,6 +26,54 @@ const page = () => {
       console.log(e)
     }
   }
+  const [loginStatus,setLoginStatus]=useState(false)
+  const getLoginStatus=async()=>{
+		try{
+		let authtoken =sessionStorage.getItem('auth-token')
+		let response;
+		if(authtoken){
+			response = await fetch('http://localhost:8000/auth/test_token', {
+			method: "GET", // *GET, POST, PUT, DELETE, etc.
+			mode:'cors',
+			headers: {
+			  "accept": "application/json",
+			  "Authorization":`Token ${authtoken}`
+			}, 
+		  });
+		}
+		else{
+		    response = await fetch('http://localhost:8000/auth/test_token', {
+			method: "GET", // *GET, POST, PUT, DELETE, etc.
+			mode:'cors',
+			headers: {
+			  "accept": "application/json",
+			  "Authorization":`Token ${authtoken}`
+			}, 
+		  });
+		}
+		  console.log(response.status)
+		  if(response.status==200){
+			setLoginStatus(true)
+			
+		  }
+		  else{
+			setLoginStatus(false)
+		  }
+		}
+		catch(e){
+			console.log(e)
+		}
+		  
+	}
+
+  useEffect(()=>{
+		getLoginStatus()
+	},[loginStatus])
+
+
+  
+
+
   return (
     <div className='bg-gradient-to-r from-pink-200 to-white w-100 h-screen p-0.5 justify-center items-center'>
       <h1 className='text-black text-bold p-2 mx-auto text-2xl'>Create Profile</h1>

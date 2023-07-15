@@ -1,8 +1,23 @@
 "use client";
 import React from "react";
 import axios from "axios";
+import getLoginStatus from "@/utilites/getLoginStatus";
+import { useRouter } from "next/navigation";
 
 const page = () => {
+
+  const router = useRouter()
+ 
+  const checkLogin = async ()=> {
+    const response = await getLoginStatus()
+    if (!response) {
+      window.location.href= "http://localhost:3000/home";    }
+  }
+
+  checkLogin() 
+ 
+
+
   const [dishName, setDishName] = React.useState("");
   const [dishBio, setDishBio] = React.useState("");
   const [dishCuisine, setDishCuisine] = React.useState("");

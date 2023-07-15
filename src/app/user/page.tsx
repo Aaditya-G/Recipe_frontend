@@ -7,6 +7,7 @@ import Postcards from "@/components/Postcards";
 import { useRouter } from "next/navigation";
 import defaultPFP from '../../../public/default_pfp.svg'
 import axios from "axios";
+import getLoginStatus from "@/utilites/getLoginStatus";
 interface postCards {
   dishName: string;
   dishId: string;
@@ -22,6 +23,20 @@ interface profileI {
   profilePhoto: string;
 }
 const page = () => {
+
+  const router = useRouter()
+ 
+  const checkLogin = async ()=> {
+    const response = await getLoginStatus()
+    if (!response) {
+    
+      window.location.href= "http://localhost:3000/home";
+    }
+  }
+
+  checkLogin() 
+
+  
   let [profile, setProfile] = useState<profileI>({});
   const [posts, setPosts] = useState<postCards[]>([]);
 
@@ -107,7 +122,6 @@ const page = () => {
     }
   }
 
-  const router = useRouter();
 
   return (
     <div className="bg-gradient-to-r from-pink-200 to-white w-100 h-screen px-40 justify-center items-center">
