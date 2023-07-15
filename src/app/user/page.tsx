@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 775eff0670a0bc11735f7108a2c2aaffd7914ced
 'use client';
 import { profile } from "console";
 import { useState,useEffect } from "react";
@@ -6,7 +9,7 @@ import { Interface } from "readline";
 import Image from "next/image";
 import Link from "next/link";
 import Postcards from "@/components/Postcards";
-//backend me test_token me jaake response me request.user.username krdena
+import { useRouter } from "next/navigation"
 interface postCards{
     dishName:string,
     dishId:string,
@@ -68,6 +71,9 @@ const page = () => {
 
     getProfile()
   },[])
+    
+    
+    const router = useRouter();
 
     
     return (
@@ -75,7 +81,7 @@ const page = () => {
           <div className="bg-blue-950 w-6/7 m-auto h-1/2 rounded-lg flex flex-row">
            <div className="w-1/4 h-5/6 grid place-items-center">
            {/* <Image src={`http://127.0.0.1:8000${profile.profilePhoto}`} alt={"profilePhoto"} height={50} width={50}/> */}
-           <img src={`http://127.0.0.1:8000${profile.profilePhoto}`} alt="profilePhoto" className="object-cover rounded-lg border-white border-solid border-2 mx-auto p-2 my-2"/>
+           <img src={`http://localhost:8000${profile.profilePhoto}`} alt="profilePhoto" className="object-cover rounded-lg border-white border-solid border-2 mx-auto p-2 my-2"/>
            </div>
             <div className="w-2/4 grid place-items-center">
                 <h1 className="text-white text-2xl font-bold p-1 mx-auto my-2">userId: {profile.userId}</h1>
@@ -98,8 +104,8 @@ const page = () => {
            return <Postcards key={Element.dishId} createdAt={Element.createdAt} dishId={Element.dishId} dishName={Element.dishName} userId={Element.userId} dishPhoto={Element.dishPhoto}/>
           })
         }
-      </div>
             
+<<<<<<< HEAD
 =======
 'use client'
 import { useRouter } from "next/navigation"
@@ -115,15 +121,23 @@ const page = () => {
 
 
          <button 
+=======
+             <button 
+>>>>>>> 775eff0670a0bc11735f7108a2c2aaffd7914ced
          onClick={() => router.push('/posts/new') }
          className="px-4 py-2 bg-blue-950 hover:bg-blue-800 text-white rounded-xl flex items-center gap-2">
             CREATE NEW POST
          </button>
+<<<<<<< HEAD
 
 
 
 
 >>>>>>> 01b8292a5f4ad58a8f4801da77d9b70d128e3646
+=======
+      </div>
+           
+>>>>>>> 775eff0670a0bc11735f7108a2c2aaffd7914ced
         </div>
     )
 }
