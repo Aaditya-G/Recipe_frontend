@@ -1,46 +1,91 @@
+'use client';
+import { useState,useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import Postcards from "@/components/Postcards";
+import { useRouter } from "next/navigation"
+interface postCards{
+    id : string,
+    dishName:string,
+    dishId:string,
+    createdAt:string,
+    userId:string,
+    dishPhoto:string
+  }
+interface profileI{
+    userId:string,
+    name:string,
+    bio:string,
+    emailId:string,
+    profilePhoto:string
+}
+const page = () => {
+    let [profile,setProfile]=useState<profileI>({})
+    const [posts,setPosts]=useState<postCards[]>([])
+    // let profile:profileI;
+    const getProfile=async()=>{
+        let authtoken =sessionStorage.getItem('auth-token')
+        let response1 = await fetch(`http://localhost:8000/auth/test_token`, {
+                method: "GET", // *GET, POST, PUT, DELETE, etc.
+                mode:'cors',
+                headers: {
+                  "accept": "application/json",
+                  "Authorization":`Token ${authtoken}`
+                }, 
+              });
+          let data1=await response1.json()
+          // console.log(data1[0])
+          let response2=await fetch(`http://localhost:8000/userProfile/getProfile/${data1[0]}`,{
+            method: "GET", // *GET, POST, PUT, DELETE, etc.
+                mode:'cors',
+                headers: {
+                  "accept": "application/json",
+                  "Authorization":`Token ${authtoken}`
+                }, 
+              }
+          )
+          let data2=await response2.json()
+          console.log(data2.user_profile)
+          setProfile(data2.user_profile)
+        //   profile=data2.user_profile
+          // console.log(profile)
+          let response3 = await fetch(`http://localhost:8000/post/getUserLikedPost/${data1[0]}`, {
+			method: "GET", // *GET, POST, PUT, DELETE, etc.
+			mode:'cors',
+			headers: {
+			  "accept": "application/json",
+			  "Authorization":`Token ${authtoken}`
+			}, 
+		  });
+      let data3=await response3.json()  
+      console.log(data3)
+      setPosts(data3.message)
+  }
+  useEffect(()=>{
 
-   async function page () {
-    const res = await fetch (
-        'http://localhost:8000/post/getAllPost'
-    );
-     const data = await res.json();
-
-     let imgurl = ''
-     data && [data].map((item , i) => (
-        imgurl = "http://localhost:8000" + data.message[i].dishPhoto
-     ))
-
-
-  console.log(data)
-  console.log(imgurl)
-
-   
-
-    return (
-        <>
-
-        <div>
-        {data && 
-              [data].map((item , i) => (
-                <div key={i}>
-                    {data.message[i].dishName} <br />
-                    {data.message[i].userId}   // will use this format for iterating over data
-                    {data.message[i].dishPhoto}
-                    <Image src = {imgurl}
-                     alt= ""
-                      width={800} 
-                      height={400} />
-                </div>
-             
-
-              ))}
-        </div>
-         
+    getProfile()
+  },[])
     
-        
-        </>
-       
+    
+    const router = useRouter();
+    
+    
+    return (
+        <div className="bg-gradient-to-r from-pink-200 to-white w-100 h-screen p-0.5 justify-center items-center" > 
+          <h1 className="text-4xl font-extrabold text-black p-1 mx-auto text-center">SAVED RECIPES</h1>
+          <div className="flex flex-row p-2 ">
+        {
+          posts.map((Element:postCards)=>{
+            console.log(Element,'hello world')
+            // return<h1>hello</h1>
+           return <Postcards key={Element.id} createdAt={Element.createdAt} dishId={Element.dishId} dishName={Element.dishName} userId={Element.userId} dishPhoto={Element.dishPhoto}/>
+          })
+        }
+            
+            
+      </div>
+           
+        </div>
     )
 }
 

@@ -44,12 +44,14 @@ const page = () => {
 
 
     return (
-      <div className="bg-gradient-to-r from-pink-200 to-white w-100 h-100 p-0.5 justify-center items-center">
-      <div className="bg-blue-950 w-18/19 h-1/2 items-center justify-center rounded-lg mx-auto flex-row flex">
-        <div className="w-33% p-4 ">
-          <h1 className="font-extrabold text-5xl p-2">Discover Simple</h1>
-          <h1 className="font-extrabold text-4xl p-2">Delicious, And</h1>
-          <h1 className="font-extrabold text-4xl text-pink-400 p-2">
+      <div className="bg-gradient-to-r from-pink-200 to-white w-100 h-100 px-40 justify-center items-center">
+      <div className="bg-sky-950 w-18/19 h-1/2 items-center justify-around p-10 rounded-lg mx-auto flex-row flex">
+      
+      <div className="grid grid-cols-3 gap-10">
+        <div className="col-span-1">
+        <h1 className="font-extrabold text-5xl p-2">Discover Simple</h1>
+          <h1 className="font-extrabold text-5xl p-2">Delicious, And</h1>
+          <h1 className="font-extrabold text-5xl text-pink-600 p-2">
             Fast Recipes
           </h1>
           <h1 className="text-1xl ">
@@ -60,12 +62,11 @@ const page = () => {
             Read more
           </button>
         </div>
+        <div className="col-span-1">
+        <Image src={cookPhoto} alt="cook photo" width={700} height={400}     />
 
-        <div className="w-80 p-2 ">
-          <Image src={cookPhoto} alt="cook photo"/>
-            
-        </div>
-        <div className="w-60 p-2">
+          </div>
+          <div className="col-span-1">
           <h1 className="font-extrabold text-3xl p-2">Top Receipies</h1>
           <h1 className="text-2xl ">
             A receipe is soulless.The essence of the recipe must come from you
@@ -74,7 +75,9 @@ const page = () => {
           <button className="bg-white rounded-lg hover:bg-slate-50 p-2 text-black m-2">
             check our recipe
           </button>
-        </div>
+          </div>
+
+      </div>
       </div>
       <div className="w-full flex flex-row">
         <div className="w-1/3">
