@@ -6,10 +6,11 @@ import AddToCookBook from "@/components/addToCookbook";
 
 
 const Page = async () => {
-  const { postId } = useParams();
-  const response = await fetch(`http://localhost:8000/post/getPost/${postId}` , { next: { revalidate: 100 } });
+  const  postId  = useParams();
+  console.log(postId)
+  const response = await fetch(`http://localhost:8000/post/getPost/${postId.postId}`);
   const data = await response.json();
-  const imgurl = "http://localhost:8000" + data.message.dishPhoto;
+  console.log(data)
 
   return (
     <div
@@ -20,7 +21,7 @@ const Page = async () => {
         <div className="mt-8 grid grid-cols-4">
           <div className="col-span-1">
             <div className="img-circle">
-              <Image src={imgurl} alt="" width={400} height={400} id="img" />
+              <Image src="" alt="" width={400} height={400} id="img" />
             </div>
             <div className="save-button">
                 <AddToCookBook/>

@@ -14,6 +14,7 @@ interface postCards {
   createdAt: string;
   userId: string;
   dishPhoto: string;
+  id: string;
 }
 interface profileI {
   userId: string;
@@ -126,11 +127,11 @@ const page = () => {
   return (
     <div className="bg-gradient-to-r from-pink-200 to-white w-100 h-screen px-40 justify-center items-center">
       <div className="bg-sky-950 w-6/7 m-auto h-1/2 rounded-lg flex flex-row">
-        <div className="w-1/4 h-5/6 grid place-items-center">
+        <div className="w-1/4 h-5/6 grid place-items-center p-5">
 
           {profilePhotoExists ? (
             <img
-              src={`http://localhost:8000${profile.profilePhoto}`}
+              src="https://res.cloudinary.com/dkjuwu1ia/image/upload/v1689434856/blank-profile-picture_egsloo.png"
               alt="profilePhoto"
               className="object-cover rounded-lg border-white border-solid border-2 mx-auto p-2 my-2"
             />
@@ -213,7 +214,7 @@ const page = () => {
               dishName={Element.dishName}
               userId={Element.userId}
               dishPhoto={Element.dishPhoto}
-              id={""}
+              id={Element.id}
             />
           );
         })}
