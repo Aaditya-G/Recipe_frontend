@@ -1,8 +1,9 @@
 'use client'
-
+import Image from 'next/image';
 import * as React from 'react';
 import { useState,useEffect } from "react";
 import Postcards from "@/components/Postcards";
+import cookPhoto from "../../../public/cook.svg"
 interface postCards{
   dishName:string,
   dishId:string,
@@ -61,7 +62,8 @@ const page = () => {
         </div>
 
         <div className="w-80 p-2 ">
-          <img src="" alt="cook photo" />
+          <Image src={cookPhoto} alt="cook photo"/>
+            
         </div>
         <div className="w-60 p-2">
           <h1 className="font-extrabold text-3xl p-2">Top Receipies</h1>
