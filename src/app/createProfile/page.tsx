@@ -6,45 +6,13 @@ const page = () => {
   const [email,setEmail]=useState<string>()
   const [bio,setBio]=useState<string>()
   const [photo,setPhoto]=useState<File|null>()
-  const previousProfile=async()=>{
- 
-    // let profile:profileI;
-    
-        let authtoken =sessionStorage.getItem('auth-token')
-        let response1 = await fetch(`http://localhost:8000/auth/test_token`, {
-                method: "GET", // *GET, POST, PUT, DELETE, etc.
-                mode:'cors',
-                headers: {
-                  "accept": "application/json",
-                  "Authorization":`Token ${authtoken}`
-                }, 
-              });
-          let data1=await response1.json()
-          console.log(data1[0])
-          let response2=await fetch(`http://localhost:8000/userProfile/getProfile/${data1[0]}`,{
-            method: "GET", // *GET, POST, PUT, DELETE, etc.
-                mode:'cors',
-                headers: {
-                  "accept": "application/json",
-                  "Authorization":`Token ${authtoken}`
-                }, 
-              }
-          )
-          let data2=await response2.json()
-          setName(data2.user_profile.name)
-          setEmail(data2.user_profile.emailId)
-          setBio(data2.user_profile.bio)
-          console.log(data2.user_profile)
-  }
-  useEffect(()=>{
-    previousProfile()
-  },[])
+
   const onClickSubmit=async()=>{
     try{
       let data={name:name,profilePhoto:photo,bio:bio,emailId:email}
     let body=JSON.stringify(data)
     let authtoken =sessionStorage.getItem('auth-token')
-    let response1 = await fetch(`http://localhost:8000/userProfile/updateProfile`, {
+    let response1 = await fetch(`http://localhost:8000/userProfile/createProfle`, {
             method: "PUT", // *GET, POST, PUT, DELETE, etc.
             mode:'cors',
             headers: {
@@ -60,7 +28,7 @@ const page = () => {
   }
   return (
     <div className='bg-gradient-to-r from-pink-200 to-white w-100 h-screen p-0.5 justify-center items-center'>
-      <h1 className='text-black text-bold p-2 mx-auto text-2xl'>Edit Profile</h1>
+      <h1 className='text-black text-bold p-2 mx-auto text-2xl'>Create Profile</h1>
       <div
   className="block max-w-md rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
   <form>
