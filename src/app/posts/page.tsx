@@ -73,12 +73,12 @@ const page = () => {
     return (
         <div className="bg-gradient-to-r from-pink-200 to-white w-100 h-screen p-0.5 justify-center items-center" > 
           <h1 className="text-4xl font-extrabold text-black p-1 mx-auto text-center">SAVED RECIPES</h1>
-          <div className="flex flex-row p-2 ">
+          <div className="grid grid-cols-3 gap-4 p-2 ">
         {
           posts.map((Element:postCards)=>{
             console.log(Element,'hello world')
             // return<h1>hello</h1>
-           return <Postcards key={Element.id} createdAt={Element.createdAt} dishId={Element.dishId} dishName={Element.dishName} userId={Element.userId} dishPhoto={Element.dishPhoto}/>
+           return <Postcards key={Element.id} createdAt={Element.createdAt} dishId={Element.dishId} dishName={Element.dishName} userId={Element.userId} dishPhoto={Element.dishPhoto} id={Element.id}/>
           })
         }
             

@@ -17,9 +17,13 @@ const SignupForm = () => {
                 email
             });
             sessionStorage.setItem('auth-token' , response.data.token)
+
+            window.location.reload()
+
+            
             } catch (error) {
             console.error(error);
-            throw new Error('Login failed');
+            throw new Error('Singup failed');
         }  
         }
 
@@ -51,7 +55,7 @@ const SignupForm = () => {
         required
         />
         <br />
-        <input 
+        {/* <input 
         type="text" 
         name="email" 
         value={email} 
@@ -59,7 +63,7 @@ const SignupForm = () => {
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
         onChange={(e) => setEmail(e.target.value)}
         required
-        />
+        /> */}
         <button type="submit">Sign up</button>
       </form>
     </div>
