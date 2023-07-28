@@ -1,7 +1,7 @@
 'use client';
 import React from 'react'
 import { useState,useEffect,ChangeEvent } from 'react';
-const page = () => {
+const EditProfilePage = () => {
   const [name,setName]=useState<string>()
   const [email,setEmail]=useState<string>()
   const [bio,setBio]=useState<string>()
@@ -152,4 +152,4 @@ const page = () => {
   )
 }
 
-export default page
+export default EditProfilePage

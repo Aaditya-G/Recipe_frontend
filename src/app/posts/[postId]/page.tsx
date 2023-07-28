@@ -5,7 +5,7 @@ import { useParams, usePathname, useRouter } from "next/navigation";
 import AddToCookBook from "@/components/addToCookbook";
 
 
-const Page = async () => {
+const PostPage = async () => {
   const  postId  = useParams();
   console.log(postId)
   const response = await fetch(`http://localhost:8000/post/getPost/${postId.postId}`);
@@ -54,4 +54,4 @@ const Page = async () => {
   );
 };
 
-export default Page;
+export default PostPage;

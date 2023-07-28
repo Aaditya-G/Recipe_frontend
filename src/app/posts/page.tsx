@@ -20,7 +20,7 @@ interface profileI{
     emailId:string,
     profilePhoto:string
 }
-const page = () => {
+const PostsPage = () => {
 
 
   const checkLogin = async ()=> {
@@ -102,4 +102,4 @@ const page = () => {
     )
 }
 
-export default page
+export default PostsPage

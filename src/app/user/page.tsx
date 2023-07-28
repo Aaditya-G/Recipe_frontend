@@ -23,7 +23,7 @@ interface profileI {
   emailId: string;
   profilePhoto: string;
 }
-const page = () => {
+const ProfilePage = () => {
 
   const router = useRouter()
  
@@ -223,4 +223,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ProfilePage;
