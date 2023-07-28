@@ -1,7 +1,7 @@
 'use client';
 import React from 'react'
 import { useState,useEffect,ChangeEvent } from 'react';
-const page = () => {
+const CreateProfilePage = () => {
   const [name,setName]=useState<string>()
   const [email,setEmail]=useState<string>()
   const [bio,setBio]=useState<string>()
@@ -124,7 +124,7 @@ const page = () => {
       <textarea
         className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
         id="exampleFormControlTextarea13"
-        rows="3"
+      
         required
         value={bio}
         onChange={(e)=>{setBio(e.target.value)}}
@@ -168,4 +168,4 @@ const page = () => {
   )
 }
 
-export default page
+export default CreateProfilePage

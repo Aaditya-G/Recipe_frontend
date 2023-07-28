@@ -19,7 +19,7 @@ interface postCards{
 
 
 
-const page = () => {
+const HomePage = () => {
    
 
   const [posts,setPosts]=useState<postCards[]>([])
@@ -153,4 +153,4 @@ const page = () => {
     );
 }
 
-export default page
+export default HomePage

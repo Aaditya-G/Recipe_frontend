@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Cloudinary } from 'cloudinary-core';
 import { env } from "process";
 
-const page = () => {
+const NewPostPage = () => {
 
   const router = useRouter()
  
@@ -150,4 +150,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default NewPostPage;
