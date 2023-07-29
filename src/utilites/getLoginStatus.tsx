@@ -1,4 +1,4 @@
-'use-client'
+// 'use-client'
 import { getDataWithAuthToken } from "@/api/fetchDataWithAuthToken";
 
 export default async function getLoginStatus() {

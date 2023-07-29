@@ -1,6 +1,7 @@
 "use-client";
 import React from "react";
 import axios from "axios";
+import { postLogin } from "@/api/postLogin";
 
 const LoginForm = () => {
   // const router = useRouter ();
@@ -10,17 +11,13 @@ const LoginForm = () => {
 
   const login = async () => {
     try {
-      const response = await axios.post("http://localhost:8000/auth/login", {
-        username,
-        password,
-      });
-
-      const token = response.data.token;
-
-      sessionStorage.setItem("auth-token", token);
+      const token = await postLogin(username,password)
+      sessionStorage.setItem('auth-token' ,token)
 
       // router.push('/home')
-      window.location.reload()
+       
+            //code to update the login button and close the modal
+
     } catch (error) {
       console.error(error);
       throw new Error("Login failed");

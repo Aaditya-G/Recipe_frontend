@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import React from 'react'
 import {useState,useEffect} from 'react'
 import Image from 'next/image';
@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import LoginModal from './loginModal';
 import LoginForm from './loginForm';
+import getLoginStatus from '@/utilites/getLoginStatus';
 
 
 const Navbar = () => {
@@ -16,43 +17,9 @@ const Navbar = () => {
 	const [showAlert, setShowAlert] = useState(false);
 	const router = useRouter()
     	
-	const getLoginStatus=async()=>{
-		try{
-		let authtoken =sessionStorage.getItem('auth-token')
-		let response;
-		if(authtoken){
-			response = await fetch('http://localhost:8000/auth/test_token', {
-			method: "GET", // *GET, POST, PUT, DELETE, etc.
-			mode:'cors',
-			headers: {
-			  "accept": "application/json",
-			  "Authorization":`Token ${authtoken}`
-			}, 
-		  });
-		}
-		else{
-		    response = await fetch('http://localhost:8000/auth/test_token', {
-			method: "GET", // *GET, POST, PUT, DELETE, etc.
-			mode:'cors',
-			headers: {
-			  "accept": "application/json",
-			  "Authorization":`Token ${authtoken}`
-			}, 
-		  });
-		}
-		  console.log(response.status)
-		  if(response.status==200){
-			setLoginStatus(true)
-			
-		  }
-		  else{
-			setLoginStatus(false)
-		  }
-		}
-		catch(e){
-			console.log(e)
-		}
-		  
+	const LoginStatus = async() => {
+         const response = await getLoginStatus();
+		 response? setLoginStatus(true) : setLoginStatus(false)
 	}
 
 	const handleAlert = () => {
@@ -61,13 +28,13 @@ const Navbar = () => {
 
 
 	useEffect(()=>{
-		getLoginStatus()
+		LoginStatus()
 	},[loginStatus])
 
 	useEffect(() => {
 		if (showAlert) {
 		  alert('You need to login or register first!');
-		  setShowAlert(false); // Reset the state after showing the alert
+		  setShowAlert(false); 
 		}
 	  }, [showAlert]);
 
@@ -106,14 +73,13 @@ const Navbar = () => {
 					loginStatus? (<Link href='#' onClick={()=>{
 						try{
 							sessionStorage.removeItem('auth-token')
-							getLoginStatus()
+							LoginStatus()
 							router.push('/')
 						}
 						catch(e){
 							console.log(e)
 						}
 					}}>LOGOUT
-					
 					</Link>):
 						<LoginModal/>
 				}
