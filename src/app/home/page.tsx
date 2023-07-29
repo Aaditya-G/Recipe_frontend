@@ -7,6 +7,7 @@ import cookPhoto from "../../../public/cook.svg"
 import foodPhoto1 from "../../../public/header_food_frame.svg"
 import search from "../../../public/Search.svg"
 import { BsSearch } from 'react-icons/bs';
+import getAllPost from '@/utilites/getAllPosts';
 
 interface postCards{
   id: string,
@@ -24,28 +25,39 @@ const HomePage = () => {
 
   const [posts,setPosts]=useState<postCards[]>([])
   // let posts:object[];
-  const getAllReciepes=async()=>{
-    try{
-    let authtoken =sessionStorage.getItem('auth-token')
-    let response = await fetch('http://localhost:8000/post/getAllPost', {
-			method: "GET", // *GET, POST, PUT, DELETE, etc.
-			mode:'cors',
-			headers: {
-			  "accept": "application/json",
-			  "Authorization":`Token ${authtoken}`
-			}, 
-		  });
-      let data=await response.json()
+  // const getAllReciepes=async()=>{
+  //   try{
+  //   let authtoken =sessionStorage.getItem('auth-token')
+  //   let response = await fetch('http://localhost:8000/post/getAllPost', {
+	// 		method: "GET", // *GET, POST, PUT, DELETE, etc.
+	// 		mode:'cors',
+	// 		headers: {
+	// 		  "accept": "application/json",
+	// 		  "Authorization":`Token ${authtoken}`
+	// 		}, 
+	// 	  });
+  //     let data=await response.json()
       
-      setPosts(data.message)
-      console.log(typeof(data.message))
-    }catch(e){
-      console.log(e)
+  //     setPosts(data.message)
+  //     console.log(typeof(data.message))
+  //   }catch(e){
+  //     console.log(e)
+  //   }
+  // }
+  
+    const getAllReciepes = async () => {
+      try {
+        const data = await getAllPost()
+        setPosts(data?.data.message)
+      } catch (error) {
+        
+      }
     }
-  }
-  useEffect(()=>{
+    
+    useEffect(()=>{
      getAllReciepes()
   },[])
+
 
 
     return (
@@ -143,8 +155,6 @@ const HomePage = () => {
 
       <div className="grid grid-cols-3 gap-4 p-2 ">        {
           posts.map((Element:postCards)=>{
-            console.log(Element,'hello world')
-            // return<h1>hello</h1>
            return <Postcards key={Element.dishId} createdAt={Element.createdAt} dishId={Element.dishId} dishName={Element.dishName} userId={Element.userId} dishPhoto={Element.dishPhoto} id={Element.id}/>
           })
         }

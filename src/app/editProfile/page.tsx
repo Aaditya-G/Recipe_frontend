@@ -58,6 +58,18 @@ const EditProfilePage = () => {
       console.log(e)
     }
   }
+
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      setPhoto(files[0]);
+    } else {
+      setPhoto(null);
+    }
+  };
+
+
   return (
     <div className='bg-gradient-to-r from-pink-200 to-white w-100 h-screen p-0.5 justify-center items-center'>
       <h1 className='text-black text-bold p-2 mx-auto text-2xl'>Edit Profile</h1>
@@ -108,7 +120,7 @@ const EditProfilePage = () => {
       <textarea
         className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
         id="exampleFormControlTextarea13"
-        rows="3"
+        // rows="3"
         required
         value={bio}
         onChange={(e)=>{setBio(e.target.value)}}
@@ -127,7 +139,7 @@ const EditProfilePage = () => {
         className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
         id="exampleInput7"
         required
-        onChange={(e:ChangeEvent<HTMLInputElement>)=>{setPhoto(e.target.files[0])}}
+        onChange={handleFileChange}
         placeholder="Name" />
       <label
         htmlFor="exampleInput7"
