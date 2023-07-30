@@ -2,7 +2,15 @@ This repo contains the necessary files to run the client side of Recipe Sharing 
 
 ## Getting Started
 
-First, run the development server:
+rename the file "sample.env" into ".env.local"  and enter all the necessary fields 
+
+install the node modules
+
+```bash
+npm  i
+```
+
+run the development server 
 
 ```bash
 npm run dev
