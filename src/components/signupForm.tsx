@@ -1,8 +1,13 @@
+"use-client"
 import React from "react";
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import { postSignup } from "@/api/postSignup";
+// import LoginModal from "@/components/loginModal"
 
 const SignupForm = () => {
     
+  const router = useRouter();
 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -11,19 +16,20 @@ const SignupForm = () => {
 
     const signup = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/auth/signup' , {
-                username,
-                password,
-                email
-            });
-            sessionStorage.setItem('auth-token' , response.data.token)
+            const token = await postSignup(username,password)
+            sessionStorage.setItem('auth-token' ,token)
+            // router.push('/createProfile')
+            window.location.href ="http://localhost:3000/createProfile"
 
-            window.location.reload()
+            // router.replace('/') fix this later where we have to force refresh a page in nextjs 
+            // router.push('/user')
+            //code to update the login button and close the modal
+            
 
             
             } catch (error) {
             console.error(error);
-            throw new Error('Singup failed');
+            throw new Error('Signup failed');
         }  
         }
 

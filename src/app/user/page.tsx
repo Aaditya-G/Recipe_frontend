@@ -24,6 +24,7 @@ interface profileI {
   profilePhoto: string;
 }
 const ProfilePage = () => {
+  // 'use server'
 
   const router = useRouter()
  
@@ -32,6 +33,7 @@ const ProfilePage = () => {
     if (!response) {
     
       window.location.href= "http://localhost:3000/home";
+      // router.push('/home',{shallow : "false"}) 
     }
   }
 

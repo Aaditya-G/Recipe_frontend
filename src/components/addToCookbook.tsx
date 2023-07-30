@@ -1,4 +1,5 @@
 'use client';
+import { postLike } from "@/api/postLike";
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -12,40 +13,31 @@ const AddToCookBook = () => {
   const like = async () => {
     try {
         const token = sessionStorage.getItem("auth-token");
-      const data = {};
+        const data = "";
 
-      const response = await axios.post(
-        `http://localhost:8000/likes/onClick/${postId}`,
-        data,
-        {
-          headers: {
-            Authorization: `Token ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = postLike(postId, data,token);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getLikeStatus = async () => {
-    const token = sessionStorage.getItem("auth-token");
-    try {
-        const response = await axios.get(
-            `http://localhost:8000/likes/getLikeStatus/${postId}`, 
-            {
-              headers: {
-                Authorization: `Token ${token}`,
-                "Content-Type": "application/json",
-              },
-            }
-            )
-            console.log(response)
-    } catch (error) {
-        console.log(error)
-    }
-  }
+  // const getLikeStatus = async () => {
+  //   const token = sessionStorage.getItem("auth-token");
+  //   try {
+  //       const response = await axios.get(
+  //           `http://localhost:8000/likes/getLikeStatus/${postId}`, 
+  //           {
+  //             headers: {
+  //               Authorization: `Token ${token}`,
+  //               "Content-Type": "application/json",
+  //             },
+  //           }
+  //           )
+  //           console.log(response)
+  //   } catch (error) {
+  //       console.log(error)
+  //   }
+  // }
  
   return (
     <div>
@@ -57,7 +49,7 @@ const AddToCookBook = () => {
          
         </div>
       </div>
-      <button onClick={getLikeStatus}> GET STATUS </button>
+      {/* <button onClick={getLikeStatus}> GET STATUS </button> */}
     </div>
   );
 };
