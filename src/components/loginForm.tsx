@@ -2,6 +2,8 @@
 import React from "react";
 import axios from "axios";
 import { postLogin } from "@/api/postLogin";
+import { useRouter } from "next/navigation";
+
 
 const LoginForm = () => {
   // const router = useRouter ();
@@ -14,7 +16,8 @@ const LoginForm = () => {
       const token = await postLogin(username,password)
       sessionStorage.setItem('auth-token' ,token)
 
-      // router.push('/home')
+      const router = useRouter();
+      router.push('/home')
        
             //code to update the login button and close the modal
 

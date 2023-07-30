@@ -91,7 +91,7 @@ const PostsPage = () => {
           posts.map((Element:postCards)=>{
             console.log(Element,'hello world')
             // return<h1>hello</h1>
-           return <Postcards key={Element.id} createdAt={Element.createdAt} dishId={Element.dishId} dishName={Element.dishName} userId={Element.userId} dishPhoto={Element.dishPhoto} id={Element.id}/>
+           return <Postcards key={Element.dishId} createdAt={Element.createdAt} dishId={Element.dishId} dishName={Element.dishName} userId={Element.userId} dishPhoto={Element.dishPhoto} id={Element.id}/>
           })
         }
             

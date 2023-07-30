@@ -24,33 +24,13 @@ const HomePage = () => {
    
 
   const [posts,setPosts]=useState<postCards[]>([])
-  // let posts:object[];
-  // const getAllReciepes=async()=>{
-  //   try{
-  //   let authtoken =sessionStorage.getItem('auth-token')
-  //   let response = await fetch('http://localhost:8000/post/getAllPost', {
-	// 		method: "GET", // *GET, POST, PUT, DELETE, etc.
-	// 		mode:'cors',
-	// 		headers: {
-	// 		  "accept": "application/json",
-	// 		  "Authorization":`Token ${authtoken}`
-	// 		}, 
-	// 	  });
-  //     let data=await response.json()
-      
-  //     setPosts(data.message)
-  //     console.log(typeof(data.message))
-  //   }catch(e){
-  //     console.log(e)
-  //   }
-  // }
   
     const getAllReciepes = async () => {
       try {
         const data = await getAllPost()
         setPosts(data?.data.message)
       } catch (error) {
-        
+        console.log(error)
       }
     }
     

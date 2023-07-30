@@ -18,8 +18,8 @@ const SignupForm = () => {
         try {
             const token = await postSignup(username,password)
             sessionStorage.setItem('auth-token' ,token)
-            router.push('/createProfile')
-            window.location.href = "localhost:3000/createProfile"
+            // router.push('/createProfile')
+            window.location.href ="http://localhost:3000/createProfile"
 
             // router.replace('/') fix this later where we have to force refresh a page in nextjs 
             // router.push('/user')

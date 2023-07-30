@@ -33,7 +33,7 @@ const pic = dishPhoto
   </div>
 
   {/* Read More Link */}
-  <Link href={`posts/${id}`} className='text-black bg-white rounded'>
+  <Link href={`posts/${dishId}`} className='text-black bg-white rounded'>
     Read more
   </Link>
 </div>
