@@ -45,12 +45,12 @@ const {postId} = useParams();
       className="bg-gradient-to-r from-pink-200 to-white w-full px-8 md:px-auto text-black h-screen"
     >
       <div className="header text-white bg-slate-800 rounded-2xl h-1/2 p-20">
-        <div className="mt-8 grid grid-cols-4">
+        <div className=" grid grid-cols-4">
           <div className="col-span-1">
             <div className="img-circle w-64 h-64 rounded-full border-4 border-red-800 overflow-hidden ">
-              <Image src="" alt="" width={256} height={256} id="img" className="w-full h-full object-cover" />
+              <Image src={data? data.dishPhoto : ""} alt="" width={256} height={256} id="img" className="w-full h-full object-cover" />
             </div>
-            <div className="save-button">
+            <div className="save-button pt-16">
                 <AddToCookBook/>
             </div>
           </div>

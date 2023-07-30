@@ -18,21 +18,21 @@ const pic = dishPhoto
 
 // console.log(pic)
   return (
-    <div className='inline-flex flex-col items-center bg-sky-950 rounded-lg border-black border-solid border-2 m-1 h-18'>
-  {/* Image */}
-  <Image src={pic} alt={dishName} width={100} height={400} />
+    <div className='flex flex-col items-center bg-sky-950 rounded-lg border-black border-solid border-2 m-1 h-18'>
 
-  {/* Dish Name */}
+  <Image src={pic} alt={dishName} width={400} height={400} />
+
+
   <h1 className='font-extrabold text-2xl p-1 m-1 text-center uppercase'>
     {dishName}
   </h1>
 
-  {/* User Symbol */}
-  <div className='flex items-center'>
-    <h1 className='text-1xl text-white'>{userId}</h1>
+
+  <div className='flex items-center text-1xl text-white'>
+    By {userId}
   </div>
 
-  {/* Read More Link */}
+
   <Link href={`posts/${dishId}`} className='text-black bg-white rounded'>
     Read more
   </Link>

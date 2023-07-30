@@ -131,7 +131,7 @@ const HomePage = () => {
         </div>
       </div>
       
-      <h1 className="text-4xl font-extrabold text-black p-1 mx-auto text-center">Recipies</h1>
+      <h1 className="text-4xl font-extrabold text-black p-1 mx-auto text-center">Recipes</h1>
 
       <div className="grid grid-cols-3 gap-4 p-2 ">        {
           posts.map((Element:postCards)=>{
