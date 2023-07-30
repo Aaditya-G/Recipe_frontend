@@ -1,4 +1,3 @@
-'use-client'
 import { getDataWithoutAuthToken } from "@/api/fetchDataWithoutAuthToken";
 
 export default async function getAllPost() {

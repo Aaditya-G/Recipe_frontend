@@ -1,4 +1,5 @@
 'use client';
+import { createNewProfile } from '@/utilites/createNewProfile';
 import React from 'react'
 import { useState,useEffect,ChangeEvent } from 'react';
 const CreateProfilePage = () => {
@@ -9,19 +10,12 @@ const CreateProfilePage = () => {
 
   const onClickSubmit=async()=>{
     try{
-      let data={name:name,profilePhoto:photo,bio:bio,emailId:email}
+
+
+    let data={name:name,profilePhoto:photo,bio:bio,emailId:email}
     let body=JSON.stringify(data)
-    let authtoken =sessionStorage.getItem('auth-token')
-    let response1 = await fetch(`http://localhost:8000/userProfile/createProfle`, {
-            method: "PUT", // *GET, POST, PUT, DELETE, etc.
-            mode:'cors',
-            headers: {
-              "accept": "application/json",
-              "Authorization":`Token ${authtoken}`
-            }, 
-            body:body
-          });
-      let data1=await response1.json()
+    let response = await createNewProfile(body);
+    console.log(response)
     }catch(e){
       console.log(e)
     }
